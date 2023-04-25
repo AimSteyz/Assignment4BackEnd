@@ -1,0 +1,8 @@
+const { createComment, getComments, getComment, deleteComment } = require('../../controllers/comment');
+
+module.exports = async function (fastify) {
+    fastify.post('/', createComment);
+    fastify.get('/', getComments);
+    fastify.get('/:id', getComment);
+    fastify.delete('/:id', deleteComment);
+}
