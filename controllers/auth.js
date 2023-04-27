@@ -15,6 +15,7 @@ const register = async (req, reply) => {
         reply.code(400).send({ message: err.message })
     }
 }
+
 const login = async (req, reply) => {
     const { email, password } = req.body
 

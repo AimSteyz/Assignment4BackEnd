@@ -44,10 +44,16 @@ const deleteArticle = async (req, res) => {
 }
 
 const updateArticle = async (req, res) => {
-    const article = await Article.findByIdAndUpdate(req.params.id, req.body);
-    if (article)
-        return res.status(200).send({ Success: "Article updated." });
-    return res.status(400).send({ Error: "No article found." });
+    const article = await Article.findById(req.params.id);
+    if (!article)
+        return res.status(400).send({ Error: "No article found." });
+    article.content = req.body.content;
+    if (req.body.numberOfRatings !== article.numberOfRatings) {
+        article.rating = (article.rating * article.numberOfRatings + req.body.rating) / (article.numberOfRatings + 1);
+        article.numberOfRatings = article.numberOfRatings + 1;
+    }
+    await article.save();
+    return res.status(200).send({ Success: "Article updated." });
 }
 
 module.exports = {

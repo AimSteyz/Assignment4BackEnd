@@ -32,6 +32,17 @@ const getComment = async (req, res) => {
     return res.status(400).send({ Error: "No comment found." });
 }
 
+const updateComment = async (req, res) => {
+    const comment = await Comment.findById(req.params.id);
+    if (comment) {
+        comment.content = req.body.content;
+        comment.upVotes = req.body.upVotes;
+        await comment.save();
+        return res.status(200).send({ Success: "Comment updated." });
+    }
+    return res.status(400).send({ Error: "No comment found." });
+}
+
 const deleteComment = async (req, res) => {
     const comment = await Comment.findByIdAndDelete(req.params.id);
     if (comment) {
@@ -47,5 +58,6 @@ module.exports = {
     createComment,
     getComments,
     getComment,
+    updateComment,
     deleteComment
 }
