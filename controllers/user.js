@@ -18,11 +18,10 @@ const updateUser = async (req, res) => {
     const user = await User.findById(req.params.id);
     if (!user)
         return res.status(400).send({ Error: "No user found." });
-    user.username = req.body.username;
-    user.email = req.body.email;
-    user.password = req.body.password;
-    if (req.body.role !== user.role)
-        user.role = req.body.role;
+    user.username = user.username || req.body.username;
+    user.email = user.email || req.body.email;
+    user.password = user.password || req.body.password;
+    user.role = user.role || req.body.role;
     await user.save();
     return res.status(200).send({ Success: "User updated." });
 }
