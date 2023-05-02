@@ -22,6 +22,8 @@ const updateUser = async (req, res) => {
     user.email = req.body.email || user.email
     user.password = req.body.password || user.password
     user.roles = req.body.roles || user.roles;
+    console.log(req.body);
+    console.log(user);
     await user.save();
     return res.status(200).send({ Success: "User updated." });
 }
