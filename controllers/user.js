@@ -21,6 +21,8 @@ const updateUser = async (req, res) => {
     user.username = req.body.username;
     user.email = req.body.email;
     user.password = req.body.password;
+    if (req.body.role !== user.role)
+        user.role = req.body.role;
     await user.save();
     return res.status(200).send({ Success: "User updated." });
 }
