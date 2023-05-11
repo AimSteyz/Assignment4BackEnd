@@ -1,10 +1,11 @@
 const fastify = require('fastify')({logger: true, pluginTimeout: 20000})
-// const env = require('dotenv')
 
 PORT = process.env.port | 8080
 
+// Initialize fastify
 require('./app')(fastify, {})
 
+// Run the server!
 fastify.listen({port: PORT, host: '0.0.0.0'}, (err) => {
     if (err) {
         fastify.log.error(err)

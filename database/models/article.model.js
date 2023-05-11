@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// Schema for articles
 const Article = mongoose.model(
     "Article",
     new mongoose.Schema({

@@ -3,6 +3,7 @@
 const path = require('path')
 const AutoLoad = require('@fastify/autoload')
 
+// Initialize fastify module and mongoDB connection
 module.exports = async function (fastify) {
     require('./database/mongo')
     fastify.register(require('@fastify/formbody'))
@@ -13,6 +14,7 @@ module.exports = async function (fastify) {
         allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
     })
 
+    // Load all routes
     fastify.register(AutoLoad, {
         dir: path.join(__dirname, 'routes')
     })

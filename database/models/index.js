@@ -5,6 +5,7 @@ const db = {};
 
 db.mongoose = mongoose;
 
+// Export the all the models as an object
 db.user = require("./user.model");
 db.comment = require("./comment.model");
 db.article = require("./article.model");

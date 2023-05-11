@@ -1,6 +1,7 @@
 const Comment = require('../database/models/comment.model');
 const Article = require('../database/models/article.model');
 
+// Create a comment
 const createComment = async (req, res) => {
     const { content, author } = req.body;
     const article = await Article.findById(req.body.article);
@@ -18,6 +19,7 @@ const createComment = async (req, res) => {
     }
 }
 
+// Get all comments
 const getComments = async (req, res) => {
     const comments = await Comment.find();
     if (comments)
@@ -25,6 +27,7 @@ const getComments = async (req, res) => {
     return res.status(400).send({ Error: "No comments found." });
 }
 
+// Get a comment by id
 const getComment = async (req, res) => {
     const comment = await Comment.findById(req.params.id);
     if (comment)
@@ -32,6 +35,7 @@ const getComment = async (req, res) => {
     return res.status(400).send({ Error: "No comment found." });
 }
 
+// Update a comment by id
 const updateComment = async (req, res) => {
     const comment = await Comment.findById(req.params.id);
     if (comment) {
@@ -43,6 +47,7 @@ const updateComment = async (req, res) => {
     return res.status(400).send({ Error: "No comment found." });
 }
 
+// Delete a comment by id
 const deleteComment = async (req, res) => {
     const comment = await Comment.findByIdAndDelete(req.params.id);
     if (comment) {
@@ -54,6 +59,7 @@ const deleteComment = async (req, res) => {
     return res.status(400).send({ Error: "No comment found." });
 }
 
+// Export comment controller
 module.exports = {
     createComment,
     getComments,

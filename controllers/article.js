@@ -1,6 +1,7 @@
 const Article = require('../database/models/article.model');
 const User = require('../database/models/user.model');
 
+// Create an article
 const createArticle = async (req, res) => {
     const { title, content } = req.body;
     if (!title || !content) {
@@ -22,6 +23,7 @@ const createArticle = async (req, res) => {
     }
 }
 
+// Get all articles
 const getArticles = async (req, res) => {
     const articles = await Article.find();
     if (articles)
@@ -29,6 +31,7 @@ const getArticles = async (req, res) => {
     return res.status(400).send({ Error: "No articles found." });
 }
 
+// Get an article by id
 const getArticle = async (req, res) => {
     const article = await Article.findById(req.params.id);
     if (article)
@@ -36,6 +39,7 @@ const getArticle = async (req, res) => {
     return res.status(400).send({ Error: "No article found." });
 }
 
+// Delete an article by id
 const deleteArticle = async (req, res) => {
     const article = await Article.findByIdAndDelete(req.params.id);
     if (article)
@@ -43,6 +47,7 @@ const deleteArticle = async (req, res) => {
     return res.status(400).send({ Error: "No article found." });
 }
 
+// Update an article by id
 const updateArticle = async (req, res) => {
     const article = await Article.findById(req.params.id);
     if (!article)
@@ -56,6 +61,7 @@ const updateArticle = async (req, res) => {
     return res.status(200).send({ Success: "Article updated." });
 }
 
+// Export article controllers
 module.exports = {
     createArticle,
     getArticles,

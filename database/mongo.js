@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 require('dotenv').config();
 
+// Options for connecting to MongoDB
 const options = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -8,6 +9,7 @@ const options = {
     w: "majority"
 }
 
+// Connect to MongoDB
 try {
     mongoose.connect("mongodb+srv://wtassign:azerty@assignment.sbkeg7m.mongodb.net/", options)
         .then(() => console.log("Connected to MongoDB"))
