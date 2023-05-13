@@ -1,4 +1,7 @@
 {
+  "engines": {
+    "node": "18.16.0"
+  },
   "scripts": {
     "dev": "fastify start -l info -P",
     "start": "nodemon index.js"
